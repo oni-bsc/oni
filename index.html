@@ -59,6 +59,8 @@ nav{position:sticky;top:0;z-index:50;background:rgba(250,241,222,.94);backdrop-f
 .hero .rule{width:120px;height:3px;background:var(--red);margin:20px auto 18px}
 .hero .sub{font-size:18.5px;color:var(--ink);max-width:560px}
 .hero .sub b{color:var(--red)}
+.herostat{margin-top:20px;display:inline-block;background:#fffdf6;border:2px solid var(--ink);border-radius:999px;padding:9px 22px;font-size:15.5px;box-shadow:4px 4px 0 var(--indigo)}
+.herostat b{font-family:'Cinzel',serif;color:var(--red);font-size:18px}
 .scrolldown{margin-top:36px;background:var(--panel);border:2px solid var(--ink);color:var(--ink);border-radius:999px;padding:10px 22px;font-size:13.5px;font-weight:600;letter-spacing:.1em;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:4px 4px 0 var(--ink)}
 .scrolldown:hover{color:var(--red)}
 .waveband{line-height:0;position:relative;z-index:1}
@@ -188,6 +190,7 @@ footer{border-top:2px solid var(--ink);padding:26px 0 36px;color:var(--muted);fo
   <h1>O<span>N</span>I</h1>
   <div class="rule"></div>
   <p class="sub">3,000 Japanese demon masks, sealed in black lacquer. Nobody knows which mask sleeps in their box — until every box opens at once. The first one is <b>free</b>: post first, then claim.</p>
+  <div><span class="herostat"><b id="heroMinted">0 / 3,000</b> masks minted</span></div>
   <a class="scrolldown" href="#claim">BEGIN — CHAPTER 01 ↓</a>
 </header>
 <div class="waveband" aria-hidden="true">
@@ -483,6 +486,7 @@ async function refreshSupply(){
     const n = Number(await c.totalMinted());
     $("supplyVal").textContent = n.toLocaleString("en-US")+" / 3,000";
     $("statMinted").textContent = n.toLocaleString("en-US");
+    $("heroMinted").textContent = n.toLocaleString("en-US")+" / 3,000";
   }catch(e){}
 }
 refreshSupply();
