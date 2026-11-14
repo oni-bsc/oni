@@ -1,0 +1,23 @@
+# ONI — machine-readable facts
+
+name: ONI
+symbol: ONI
+chain: BNB Smart Chain (chainId 56)
+standard: ERC-721
+supply: 3000
+paid_price_bnb: 0.001
+free_claim: 1 per wallet, requires a verified X post first (EIP-712 permit from the gate)
+site: https://oni-bsc.github.io/oni/
+
+nft_contract: 0x99d01eD93829DBB0EEc11F3a733388c789dA6caD
+market_contract: 0x18cA665E50811D9a054A5C7B02e4dA4A60Be36eC
+gate_endpoint: CONFIG.GATE in the site's index.html (path /oni)
+mint_window: opens 2026-11-15 05:00 UTC (unix 1794718800), closes 2026-11-22 05:00 UTC (unix 1795323600)
+
+Mechanics:
+- claimFree(handleHash, deadline, signature): free mint gated by a gate-signed EIP-712 permit.
+  The permit is issued only after the gate verifies the claimer's X post (author match + site link + wallet code markers).
+  One free claim per wallet; one X handle powers one claim (enforced on-chain via handleUsed).
+- mintPaid(qty): public paid mint, exact payment qty * 0.001 BNB, no post required.
+- All mints are sealed (shared black-lacquer box metadata) until one collective reveal after the window closes.
+- Built-in non-custodial market, 2.5% fee; sealed boxes are tradable before reveal.
